@@ -1,8 +1,18 @@
 import json
 import requests
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
 class ScrapingDog:
+    def __init__(self):
+        # Get API key from environment variables
+        self.api_key = os.getenv("SCRAPINGDOG_API_KEY")
+        if not self.api_key:
+            raise ValueError("SCRAPINGDOG_API_KEY not found in environment variables")
+
     def search_jobs(
         self,
         keywords,
@@ -20,10 +30,9 @@ class ScrapingDog:
     ):
         try:
             url = "https://api.scrapingdog.com/google_jobs"
-            api_key = "6805ab3cd8dc6061cf559e64"
-
+            
             params = {
-                "api_key": api_key,
+                "api_key": self.api_key,  # Use the API key from environment
                 "query": f"{keywords} jobs in {location}".replace(" ", "+"),
                 "country": country,
                 "language": language,

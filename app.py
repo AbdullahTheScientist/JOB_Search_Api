@@ -21,7 +21,7 @@ COUNTRIES = {
 }
 
 # Main app
-st.title("🔍 Advanced Job Search API")
+st.title("🔍 All in One Job Search Platform")
 st.write("Find job listings with powerful search filters.")
 
 # Sidebar for filters
@@ -225,10 +225,3 @@ st.markdown("""
         - CSV export capability
     - **Powered by:** ScrapingDog API
 """)
-
-# Function to filter jobs by platform (must be defined for Streamlit)
-def filter_jobs_by_platform(jobs, platforms, select_all):
-    """Filter jobs to only include selected platforms"""
-    if select_all or not platforms:
-        return jobs
-    return [job for job in jobs if any(platform.lower() in job['platform'].lower() for platform in platforms)]
